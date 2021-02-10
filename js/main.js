@@ -1,18 +1,22 @@
 'use strict'
 var gElCanvas;
 var gCtx;
+var gCurrImg;
+var gFontSize = 70;
+var gFont = 'Impact';
+var gFillColor;
+var gStrokeColor;
 var gPos = {
     x: 250,
     y: 100
 };
 var gMeme = {
+    selectedImgId: '',
     selectedLineIdx: 0,
     lines: []
 };
 
 function init() {
-    // console.log('gPos:', gPos)
-    console.log('hi');
     document.querySelector('main.gallery').classList.remove('hidden');
     document.querySelector('main.edit').classList.add('hidden');
     gElCanvas = document.getElementById('my-canvas')
@@ -20,35 +24,94 @@ function init() {
 }
 
 function createMeme(img) {
+    console.log(img);
+    gCurrImg = img;
     toggleView();
     resizeCanvas(img);
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    gCtx.drawImage(gCurrImg, 0, 0, gElCanvas.width, gElCanvas.height);
 }
-
 function drawText(text) {
-    console.log('hi');
+    clearCanvas();
     gCtx.lineWidth = 2;
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = 'white';
-    gCtx.font = '70px Impact';
+    gCtx.strokeStyle = gStrokeColor;
+    gCtx.fillStyle = gFillColor;
+    gCtx.font = gFontSize + 'px ' + gFont;
     gCtx.textAlign = 'center';
     gCtx.fillText(text, gPos.x, gPos.y);
     gCtx.strokeText(text, gPos.x, gPos.y);
+    gMeme.lines.push({
+        txt: text,
+        fontSize: gCtx.font,
+        align: gCtx.textAlign,
+        fillColor: gCtx.fillStyle,
+        strokeColor: gCtx.strokeStyle,
+        pos: { x: gPos.x, y: gPos.y }
+    });
 }
 
+function switchLine() {
+    document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
+    gMeme.selectedLineIdx = (gMeme.selectedLineIdx === 1) ? 0 : 1;
+}
 function addLine() {
-    const txt = document.getElementById('txt').value;
-    drawText(txt);
-    gMeme.lines.push({
-        txt: txt,
-        fontSize: 70,
-        align: 'center',
-        color: 'white'
-    })
+    if (gMeme.lines.length === 2) return;
+    document.getElementById('txt').value = '';
+    // const txt = document.getElementById('txt').value;
+    // drawText(txt);
     gPos = {
         x: 250,
         y: 400
     };
+}
+function deleteLine() {
+
+}
+function fontPlus() {
+    gFontSize += 10;
+}
+function fontMinus() {
+    gFontSize -= 10;
+
+}
+function alignRight() {
+    gPos.x = 450;
+}
+function alignCenter() {
+    gPos.x = 250;
+
+}
+function alignLeft() {
+    gPos.x = 50;
+
+}
+function changeFont(font) {
+    gFont = font;
+}
+function toggleUnderline() {
+
+}
+function changeFillColor(color) {
+    gFillColor = color;
+}
+function changeStrokeColor(color) {
+    gStrokeColor = color;
+}
+
+function canvasClicked(ev) {
+    // console.dir(ev);
+    const { offsetX, offsetY } = ev;
+    if (offsetY > 65 && offsetY < 135) {
+        gMeme.selectedLineIdx = 0;
+
+    }
+    // var clickedText = gMeme.lines.find(line => {
+    //     return offsetX > star.x
+    //         && offsetX < star.x + gBarWidth
+    //         && offsetY > star.y 
+    //         && offsetY < gCanvas.height
+    // });
+    // if (clickedText) gMeme.selectedLineIdx=0;
+    // else closeModal()
 }
 
 function resizeCanvas(img) {
@@ -60,3 +123,62 @@ function toggleView() {
     document.querySelector('main.gallery').classList.toggle('hidden');
     document.querySelector('main.edit').classList.toggle('hidden');
 }
+
+function clearCanvas() {
+    if (gMeme.selectedLineIdx) {
+        gCtx.clearRect(0, gElCanvas.height / 2, gElCanvas.width, gElCanvas.height)
+        gCtx.drawImage(gCurrImg, 0, gElCanvas.height / 2, gElCanvas.width, gElCanvas.height);
+    }
+    else {
+        gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 2)
+        gCtx.drawImage(gCurrImg, 0, 0, gElCanvas.width, gElCanvas.height);
+    }
+}
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'canvas';
+}
+
+// on submit call to this function
+function uploadImg(elForm, ev) {
+    ev.preventDefault();
+    document.getElementById('imgData').value = gElCanvas.toDataURL("image/jpeg");
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`)
+        // document.querySelector('.share-container').innerHTML = `
+        // <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+        //    Share   
+        // </a>`
+    }
+
+    doUploadImg(elForm, onSuccess);
+}
+
+function doUploadImg(elForm, onSuccess) {
+    var formData = new FormData(elForm);
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(function (res) {
+        return res.text()
+    })
+    .then(onSuccess)
+    .catch(function (err) {
+        console.error(err)
+    })
+}
+
+// function saveToStorage(key, val) {
+//     localStorage.setItem(key, JSON.stringify(val))
+// }
+
+// function loadFromStorage(key) {
+//     var val = localStorage.getItem(key)
+//     return JSON.parse(val)
+// }

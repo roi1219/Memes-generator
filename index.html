@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/style.css">
     <title>Memes generator</title>
 </head>
@@ -27,59 +28,70 @@
         </div>
         <!-- gallery section -->
         <div class="imgs grid">
-            <img onclick="createMeme(this)" class="img1" src="imgs-square/1.jpg" alt="">
-            <img onclick="createMeme(this)" class="img2" src="imgs-square/2.jpg" alt="">
-            <img onclick="createMeme(this)" class="img3" src="imgs-square/3.jpg" alt="">
-            <img onclick="createMeme(this)" class="img4" src="imgs-square/4.jpg" alt="">
-            <img onclick="createMeme(this)" class="img5" src="imgs-square/5.jpg" alt="">
-            <img onclick="createMeme(this)" class="img6" src="imgs-square/6.jpg" alt="">
-            <img onclick="createMeme(this)" class="img7" src="imgs-square/7.jpg" alt="">
-            <img onclick="createMeme(this)" class="img8" src="imgs-square/8.jpg" alt="">
-            <img onclick="createMeme(this)" class="img9" src="imgs-square/9.jpg" alt="">
-            <img onclick="createMeme(this)" class="img10" src="imgs-square/10.jpg" alt="">
-            <img onclick="createMeme(this)" class="img11" src="imgs-square/11.jpg" alt="">
-            <img onclick="createMeme(this)" class="img12" src="imgs-square/12.jpg" alt="">
-            <img onclick="createMeme(this)" class="img13" src="imgs-square/13.jpg" alt="">
-            <img onclick="createMeme(this)" class="img14" src="imgs-square/14.jpg" alt="">
-            <img onclick="createMeme(this)" class="img15" src="imgs-square/15.jpg" alt="">
-            <img onclick="createMeme(this)" class="img16" src="imgs-square/16.jpg" alt="">
-            <img onclick="createMeme(this)" class="img17" src="imgs-square/17.jpg" alt="">
-            <img onclick="createMeme(this)" class="img18" src="imgs-square/18.jpg" alt="">
+            <img onclick="createMeme(this)" id="0" src="imgs-square/1.jpg" alt="">
+            <img onclick="createMeme(this)" id="1" src="imgs-square/2.jpg" alt="">
+            <img onclick="createMeme(this)" id="2" src="imgs-square/3.jpg" alt="">
+            <img onclick="createMeme(this)" id="3" src="imgs-square/4.jpg" alt="">
+            <img onclick="createMeme(this)" id="4" src="imgs-square/5.jpg" alt="">
+            <img onclick="createMeme(this)" id="5" src="imgs-square/6.jpg" alt="">
+            <img onclick="createMeme(this)" id="6" src="imgs-square/7.jpg" alt="">
+            <img onclick="createMeme(this)" id="7" src="imgs-square/8.jpg" alt="">
+            <img onclick="createMeme(this)" id="8" src="imgs-square/9.jpg" alt="">
+            <img onclick="createMeme(this)" id="9" src="imgs-square/10.jpg" alt="">
+            <img onclick="createMeme(this)" id="10" src="imgs-square/11.jpg" alt="">
+            <img onclick="createMeme(this)" id="11" src="imgs-square/12.jpg" alt="">
+            <img onclick="createMeme(this)" id="12" src="imgs-square/13.jpg" alt="">
+            <img onclick="createMeme(this)" id="13" src="imgs-square/14.jpg" alt="">
+            <img onclick="createMeme(this)" id="14" src="imgs-square/15.jpg" alt="">
+            <img onclick="createMeme(this)" id="15" src="imgs-square/16.jpg" alt="">
+            <img onclick="createMeme(this)" id="16" src="imgs-square/17.jpg" alt="">
+            <img onclick="createMeme(this)" id="17" src="imgs-square/18.jpg" alt="">
         </div>
     </main>
     <!-- edit section -->
-    <main class="edit flex align-center space-between">
+    <main class="edit flex align-center">
         <div class="canvas-container">
-            <canvas id="my-canvas"></canvas>
+            <canvas id="my-canvas" onclick="canvasClicked(event)"></canvas>
         </div>
         <div class="action-center flex">
-            <input type="text" class="input" id="txt">
-            <div>
-                <button onclick="switchLine()" class="switch-line">switch</button>
-                <button onclick="addLine()" class="add-line">add</button>
-                <button onclick="deleteLine()" class="delete-line">delete</button>
+            <input placeholder="text" type="text" class="input" id="txt" oninput="drawText(this.value)">
+            <div class="flex space-between">
+                <button style="background-color: red; width: 50px;" onclick="switchLine()"
+                    class="switch-line fa fa-arrows-v"></button>
+                <button style="background-color: green;width: 50px;" onclick="addLine()"
+                    class="add-line fa fa-plus"></button>
+                <button style="background-color: blue;width: 50px;" onclick="deleteLine()"
+                    class="delete-line fa fa-trash"></button>
             </div>
             <div class="text-actions grid">
-                <button class="item1">font+</button>
-                <button class="item2">font- </button>
-                <button class="item3">align right</button>
-                <button class="item4">align center</button>
-                <button class="item5">align left</button>
-                <select name="font" id="font">
-                    <option value="impact">impact</option>
-                    <option value="arial">arial</option>
+                <button onclick="fontPlus()" class="item1 fa fa-font">+</button>
+                <button onclick="fontMinus()" class="item2 fa fa-font">-</button>
+                <button onclick="alignLeft()" class="item5 fa fa-align-left"></button>
+                <button onclick="alignCenter()" class="item4 fa fa-align-center"></button>
+                <button onclick="alignRight()" class="item3 fa fa-align-right"></button>
+                <select onchange="changeFont(this.value)" name="font" id="font">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
                 </select>
-                <button class="item6">underline</button>
-                <button class="item7">color</button>
+                <button onclick="toggleUnderline()" class="item6 fa fa-underline"></button>
+                <input onchange="changeFillColor(this.value)" type="color" name="fillColor" id="fillColor">
+                <input onchange="changeStrokeColor(this.value)" type="color" name="strokeColor" id="strokeColor">
+                <!-- <button onclick="changeColor()" class="item7">color</button> -->
             </div>
-            <div class="stickers"> &^%$#@#$%^&*&^%$#@#$%^</div>
-            <div class="action-center-footer flex space-between">
-                <button class="share">Share</button>
-                <button class="download">Download</button>
+            <!-- <div class="stickers"> &^%$#@#$%^&*&^%$#@#$%^</div> -->
+            <div class="action-center-footer flex">
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="share fa fa-share-alt" type="submit"></button>
+                </form>
+                <a href=""  onclick="downloadCanvas(this)">
+                    <button class="fa fa-download"></button>
+                </a>
             </div>
         </div>
     </main>
 
+    <script src="js/memeService.js"></script>
     <script src="js/main.js"></script>
 </body>
 
