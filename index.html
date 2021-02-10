@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Memes generator</title>
+</head>
+
+<body onload="init()">
+    <header class="main-header flex space-between align-center">
+        <div class="logo">Memes</div>
+        <ul class="clean-list flex space-between">
+            <li>Gallery</li>
+            <li>Edit</li>
+            <li>My Memes</li>
+            <li>About</li>
+        </ul>
+    </header>
+    <main class="gallery main-content ">
+        <div class="main-content-header flex align-center space-between">
+            <input type="text" placeholder="search">
+            <div class="tags">Lorem, ipsum dolor sit amet consectetur adipisicing.</div>
+            <button>More</button>
+        </div>
+        <!-- gallery section -->
+        <div class="imgs grid">
+            <img onclick="createMeme(this)" class="img1" src="imgs-square/1.jpg" alt="">
+            <img onclick="createMeme(this)" class="img2" src="imgs-square/2.jpg" alt="">
+            <img onclick="createMeme(this)" class="img3" src="imgs-square/3.jpg" alt="">
+            <img onclick="createMeme(this)" class="img4" src="imgs-square/4.jpg" alt="">
+            <img onclick="createMeme(this)" class="img5" src="imgs-square/5.jpg" alt="">
+            <img onclick="createMeme(this)" class="img6" src="imgs-square/6.jpg" alt="">
+            <img onclick="createMeme(this)" class="img7" src="imgs-square/7.jpg" alt="">
+            <img onclick="createMeme(this)" class="img8" src="imgs-square/8.jpg" alt="">
+            <img onclick="createMeme(this)" class="img9" src="imgs-square/9.jpg" alt="">
+            <img onclick="createMeme(this)" class="img10" src="imgs-square/10.jpg" alt="">
+            <img onclick="createMeme(this)" class="img11" src="imgs-square/11.jpg" alt="">
+            <img onclick="createMeme(this)" class="img12" src="imgs-square/12.jpg" alt="">
+            <img onclick="createMeme(this)" class="img13" src="imgs-square/13.jpg" alt="">
+            <img onclick="createMeme(this)" class="img14" src="imgs-square/14.jpg" alt="">
+            <img onclick="createMeme(this)" class="img15" src="imgs-square/15.jpg" alt="">
+            <img onclick="createMeme(this)" class="img16" src="imgs-square/16.jpg" alt="">
+            <img onclick="createMeme(this)" class="img17" src="imgs-square/17.jpg" alt="">
+            <img onclick="createMeme(this)" class="img18" src="imgs-square/18.jpg" alt="">
+        </div>
+    </main>
+    <!-- edit section -->
+    <main class="edit flex align-center space-between">
+        <div class="canvas-container">
+            <canvas id="my-canvas"></canvas>
+        </div>
+        <div class="action-center flex">
+            <input type="text" class="input" id="txt">
+            <div>
+                <button onclick="switchLine()" class="switch-line">switch</button>
+                <button onclick="addLine()" class="add-line">add</button>
+                <button onclick="deleteLine()" class="delete-line">delete</button>
+            </div>
+            <div class="text-actions grid">
+                <button class="item1">font+</button>
+                <button class="item2">font- </button>
+                <button class="item3">align right</button>
+                <button class="item4">align center</button>
+                <button class="item5">align left</button>
+                <select name="font" id="font">
+                    <option value="impact">impact</option>
+                    <option value="arial">arial</option>
+                </select>
+                <button class="item6">underline</button>
+                <button class="item7">color</button>
+            </div>
+            <div class="stickers"> &^%$#@#$%^&*&^%$#@#$%^</div>
+            <div class="action-center-footer flex space-between">
+                <button class="share">Share</button>
+                <button class="download">Download</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

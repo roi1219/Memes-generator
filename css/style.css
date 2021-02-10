@@ -1,0 +1,90 @@
+/* BASICS */
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+}
+
+button{
+    cursor: pointer;
+}
+
+/* components */
+.main-header{
+    height: 75px;
+    width: 100vw;
+    background-color: #5970C1;
+}
+ul>*{
+    width:100px;
+}
+
+/* GALLERY */
+
+.main-content-header{
+    margin-top: 15px;
+}
+.main-content-header>*{
+    flex-grow: 1;
+    padding: 10px;
+    border:2px solid black
+}
+
+img{
+    width: 150px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.imgs.grid{
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    grid-auto-rows: 150px;
+    gap:10px;
+    margin-top: 20px;
+}
+
+/* EDIT */
+#my-canvas{
+    border:1px solid black;
+    flex:1;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.action-center.flex{
+    /* grid-template-columns: repeat(5,70px);
+    grid-template-rows: repeat(6,70px); */
+    flex-direction: column;
+}
+
+.text-actions.grid{
+    margin-top: 20px;
+    grid-template-columns: repeat(5,50px);
+    grid-template-rows: repeat(2,40px);
+    gap: 5px;
+}
+/* helpers */
+
+.flex{
+    display: flex;
+}
+.grid{
+    display: grid;
+}
+.align-center{
+    align-items: center;
+}
+.space-between{
+    justify-content: space-between;
+}
+.clean-list{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.hidden{
+    display: none;
+}
