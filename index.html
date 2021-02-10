@@ -13,9 +13,9 @@
 <body onload="init()">
     <header class="main-header flex space-between align-center">
         <div class="logo">Memes</div>
-        <ul class="clean-list flex space-between">
-            <li>Gallery</li>
-            <li>Edit</li>
+        <ul class=" main-nav clean-list flex space-between">
+            <li onclick="toggleView(1)">Gallery</li>
+            <li onclick="toggleView(0)">Edit</li>
             <li>My Memes</li>
             <li>About</li>
         </ul>
@@ -23,7 +23,7 @@
     <main class="gallery main-content ">
         <div class="main-content-header flex align-center space-between">
             <input type="text" placeholder="search">
-            <div class="tags">Lorem, ipsum dolor sit amet consectetur adipisicing.</div>
+            <div class="tags">TAGS TAGS TAGS</div>
             <button>More</button>
         </div>
         <!-- gallery section -->
@@ -49,19 +49,22 @@
         </div>
     </main>
     <!-- edit section -->
-    <main class="edit flex align-center">
+    <main class="edit flex">
         <div class="canvas-container">
             <canvas id="my-canvas" onclick="canvasClicked(event)"></canvas>
         </div>
-        <div class="action-center flex">
-            <input placeholder="text" type="text" class="input" id="txt" oninput="drawText(this.value)">
-            <div class="flex space-between">
-                <button style="background-color: red; width: 50px;" onclick="switchLine()"
+        <div class="action-center flex direction-col">
+            <!-- <h3>ACTIONS</h3> -->
+            <div class=" action-center-header flex direction-col align-center">
+                <input placeholder="text" type="text" class="input" id="txt" oninput="drawText(this.value)">
+                <div>
+                    <button style="background-color: red; width: 50px;" onclick="switchLine()"
                     class="switch-line fa fa-arrows-v"></button>
-                <button style="background-color: green;width: 50px;" onclick="addLine()"
+                    <button style="background-color: green;width: 50px;" onclick="addLine()"
                     class="add-line fa fa-plus"></button>
-                <button style="background-color: blue;width: 50px;" onclick="deleteLine()"
+                    <button style="background-color: blue;width: 50px;" onclick="deleteLine()"
                     class="delete-line fa fa-trash"></button>
+                </div>
             </div>
             <div class="text-actions grid">
                 <button onclick="fontPlus()" class="item1 fa fa-font">+</button>
