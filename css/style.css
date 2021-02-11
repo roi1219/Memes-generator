@@ -220,22 +220,30 @@ img:hover {
     }
 
     .edit {
-        margin-top: 0;
-        height: 520px;
+        margin-top: 20px;
+        height: 80vh;
         flex-direction: column;
         align-items: center;
     }
 
+    .canvas-container{
+        text-align: center;
+    }
+
     #my-canvas {
-        width: 250px;
+        width: 90%;
         margin-right: 0;
         margin-bottom: 20px;
     }
 
     .action-center.flex{
         padding: 15px;
+        flex:1;
     }
-
+    .actio1n-center.flex:first-child{
+        margin-bottom: 10px;
+    }
+    
     .main-nav {
         position: fixed;
         right: 0;
