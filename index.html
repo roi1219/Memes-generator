@@ -12,14 +12,13 @@
 
 <body onload="init()">
     <header class="main-header">
-
         <div class="main-screen" onclick="toggleMenu()"></div>
         <div class="main-content flex space-between align-center">
             <div style="color: black;" class="logo">MEMES GENERATOR</div>
             <ul class=" main-nav clean-list flex">
                 <li onclick="toggleView(1)">Gallery</li>
                 <li onclick="toggleView(0)">Edit</li>
-                <li>My Memes</li>
+                <li onclick="toggleView(2)">My Memes</li>
                 <li>About</li>
             </ul>
             <button class="toggle-btn" onclick="toggleMenu()">☰</button>
@@ -102,6 +101,10 @@
                     <button class="fa fa-download"></button>
                 </a>
             </div>
+        </div>
+    </main>
+    <main class="my-memes hidden">
+        <div class="meme-container">
         </div>
     </main>
 

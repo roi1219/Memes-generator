@@ -22,13 +22,15 @@ function init() {
     document.querySelector('main.edit').classList.add('hidden');
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d');
-    // var dataURL = localStorage.getItem('canvas001');
-    // var img = new Image;
-    // img.src = dataURL;
-    // img.onload = function () {
-    //     resizeCanvas(img);
-    //     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-    // };
+    var dataURLS =(localStorage.getItem('memes'));
+    dataURLS=JSON.parse(dataURLS);
+    if(dataURLS){
+        var imgsHTML=dataURLS.map(url=>{
+            return `<img src="${url.memeURL}" >`
+        })
+        console.log(imgsHTML);
+        document.querySelector('.meme-container').innerHTML=imgsHTML;
+    }
 }
 
 function createMeme(img) {
@@ -37,6 +39,7 @@ function createMeme(img) {
     toggleView();
     resizeCanvas(img);
     gCtx.drawImage(gCurrImg, 0, 0, gElCanvas.width, gElCanvas.height);
+    gMemes.push({'memeURL':gElCanvas.toDataURL()})
 }
 
 function renderCanvas() {
@@ -50,7 +53,7 @@ function renderCanvas() {
         gCtx.fillText(line.txt, line.pos.x, line.pos.y);
         gCtx.strokeText(line.txt, line.pos.x, line.pos.y);
     });
-    // localStorage.setItem('canvas001', gElCanvas.toDataURL());
+    saveToStorage('memes',gMemes);
 }
 
 function drawText(text) {
@@ -141,11 +144,11 @@ function showTag(span) {
             return img.keyWords.includes(tag);
         });
         var imgsHTML=imgsForDisplay.map(img=>{
-            return gMemes[img.id];
+            return gElImgs[img.id];
         })
     }
     else{
-        var imgsHTML=gMemes.join('');
+        var imgsHTML=gElImgs.join('');
     }
     document.querySelector('.imgs.grid').innerHTML=imgsHTML;
 }
@@ -206,11 +209,11 @@ function toggleMenu() {
     document.body.classList.toggle('menu-open');
 }
 
-// function saveToStorage(key, val) {
-//     localStorage.setItem(key, JSON.stringify(val))
-// }
+function saveToStorage(key, val) {
+    localStorage.setItem(key, JSON.stringify(val));
+}
 
 // function loadFromStorage(key) {
-//     var val = localStorage.getItem(key)
-//     return JSON.parse(val)
+//     var val = localStorage.getItem(key);
+//     return JSON.parse(val);
 // }

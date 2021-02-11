@@ -1,4 +1,4 @@
-var gMemes=[
+var gElImgs=[
     '<img onclick="createMeme(this)" id="0" src="imgs-square/1.jpg" alt="">',
     '<img onclick="createMeme(this)" id="1" src="imgs-square/2.jpg" alt="">',
     '<img onclick="createMeme(this)" id="2" src="imgs-square/3.jpg" alt="">',
@@ -39,3 +39,5 @@ var gImgs=[
     {id:16,keyWords:['politics']},
     {id:17,keyWords:['funny']},
 ]
+
+var gMemes=[];
