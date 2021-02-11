@@ -18,3 +18,24 @@ var gMemes=[
     '<img onclick="createMeme(this)" id="16" src="imgs-square/17.jpg" alt="">',
     '<img onclick="createMeme(this)" id="17" src="imgs-square/18.jpg" alt="">'
 ];
+
+var gImgs=[
+    {id:0,keyWords:['politics','mad']},
+    {id:1,keyWords:['dogs','cute']},
+    {id:2,keyWords:['babies','dogs','cute']},
+    {id:3,keyWords:['cats','cute']},
+    {id:4,keyWords:['babies','mad']},
+    {id:5,keyWords:['funny']},
+    {id:6,keyWords:['babies','cute']},
+    {id:7,keyWords:['funny']},
+    {id:8,keyWords:['babies','funny']},
+    {id:9,keyWords:['politics','funny']},
+    {id:10,keyWords:['funny']},
+    {id:11,keyWords:['funny']},
+    {id:12,keyWords:['funny']},
+    {id:13,keyWords:['funny']},
+    {id:14,keyWords:['funny']},
+    {id:15,keyWords:['funny']},
+    {id:16,keyWords:['politics']},
+    {id:17,keyWords:['funny']},
+]

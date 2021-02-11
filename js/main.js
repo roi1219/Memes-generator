@@ -96,12 +96,7 @@ function addLine() {
 function deleteLine() {
 
 }
-function fontPlus(span) {
-    if (span) {
-        span.dataset.font = parseInt(span.dataset.font) + 1;
-        span.style.fontSize = span.dataset.font+ "px";
-        return;
-    }
+function fontPlus() {
     gFontSize += 10;
     renderCanvas();
 }
@@ -137,6 +132,24 @@ function changeStrokeColor(color) {
     renderCanvas();
 }
 
+function showTag(span) {
+    var tag=span.innerText.toLowerCase();
+    span.dataset.font = parseInt(span.dataset.font) + 1;
+    span.style.fontSize = span.dataset.font + "px";
+    if(tag!=='all'){
+        var imgsForDisplay=gImgs.filter(img=>{
+            return img.keyWords.includes(tag);
+        });
+        var imgsHTML=imgsForDisplay.map(img=>{
+            return gMemes[img.id];
+        })
+    }
+    else{
+        var imgsHTML=gMemes.join('');
+    }
+    document.querySelector('.imgs.grid').innerHTML=imgsHTML;
+}
+
 function canvasClicked(ev) {
 }
 
@@ -146,7 +159,7 @@ function resizeCanvas(img) {
 }
 
 function toggleView(value) {
-    if(document.body.classList.contains('menu-open'))toggleMenu();
+    if (document.body.classList.contains('menu-open')) toggleMenu();
     if (document.querySelector('main.gallery').classList.contains('hidden') && !value) return;
     if (document.querySelector('main.edit').classList.contains('hidden') && value) return;
     document.querySelector('main.gallery').classList.toggle('hidden');
