@@ -6,6 +6,7 @@ var gFontSize = 70;
 var gFont = 'Impact';
 var gFillColor;
 var gStrokeColor;
+var gTextAlign = 'center';
 var gPos = {
     x: 250,
     y: 100
@@ -21,39 +22,71 @@ function init() {
     document.querySelector('main.edit').classList.add('hidden');
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d');
+    // var dataURL = localStorage.getItem('canvas001');
+    // var img = new Image;
+    // img.src = dataURL;
+    // img.onload = function () {
+    //     resizeCanvas(img);
+    //     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    // };
 }
 
 function createMeme(img) {
+    gMeme.selectedImgId = img.id;
     gCurrImg = img;
     toggleView();
     resizeCanvas(img);
     gCtx.drawImage(gCurrImg, 0, 0, gElCanvas.width, gElCanvas.height);
 }
-function drawText(text) {
+
+function renderCanvas() {
     clearCanvas();
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = gStrokeColor;
-    gCtx.fillStyle = gFillColor;
-    gCtx.font = gFontSize + 'px ' + gFont;
-    gCtx.textAlign = 'center';
-    gCtx.fillText(text, gPos.x, gPos.y);
-    gCtx.strokeText(text, gPos.x, gPos.y);
-    gMeme.lines.push({
+    gMeme.lines.forEach(line => {
+        gCtx.lineWidth = 2;
+        gCtx.strokeStyle = gStrokeColor;
+        gCtx.fillStyle = gFillColor;
+        gCtx.font = gFontSize + 'px ' + gFont;
+        gCtx.textAlign = gTextAlign;
+        gCtx.fillText(line.txt, line.pos.x, line.pos.y);
+        gCtx.strokeText(line.txt, line.pos.x, line.pos.y);
+    });
+    // localStorage.setItem('canvas001', gElCanvas.toDataURL());
+}
+
+function drawText(text) {
+    gMeme.lines[gMeme.selectedLineIdx] = {
         txt: text,
         fontSize: gCtx.font,
         align: gCtx.textAlign,
         fillColor: gCtx.fillStyle,
         strokeColor: gCtx.strokeStyle,
         pos: { x: gPos.x, y: gPos.y }
-    });
+    };
+    renderCanvas();
 }
 
 function switchLine() {
-    document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
-    gMeme.selectedLineIdx = (gMeme.selectedLineIdx === 1) ? 0 : 1;
+    if (gMeme.lines.length === 2) {
+        if (gMeme.selectedLineIdx === 0) {
+            gMeme.selectedLineIdx = 1;
+            document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
+            gPos = { x: 250, y: 400 };
+        }
+        else {
+            gMeme.selectedLineIdx = 0;
+            document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
+            gPos = { x: 250, y: 100 };
+        }
+    }
+    else {
+        gMeme.selectedLineIdx = 0;
+        document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
+        gPos = { x: 250, y: 100 };
+    }
 }
 function addLine() {
     if (gMeme.lines.length === 2) return;
+    gMeme.selectedLineIdx = 1;
     document.getElementById('txt').value = '';
     gPos = {
         x: 250,
@@ -63,35 +96,47 @@ function addLine() {
 function deleteLine() {
 
 }
-function fontPlus() {
+function fontPlus(span) {
+    if (span) {
+        // console.log(span.style);
+        // span.style.fontSize = span.style.fontSize + 1 +'px';
+        span.dataset.font = parseInt(span.dataset.font) + 1;
+        span.style.fontSize = span.dataset.font+ "px";
+        return;
+    }
     gFontSize += 10;
+    renderCanvas();
 }
 function fontMinus() {
     gFontSize -= 10;
-
+    renderCanvas();
 }
 function alignRight() {
-    gPos.x = 450;
+    gTextAlign = 'right';
+    renderCanvas();
 }
 function alignCenter() {
-    gPos.x = 250;
-
+    gTextAlign = 'center';
+    renderCanvas();
 }
 function alignLeft() {
-    gPos.x = 50;
-
+    gTextAlign = 'left';
+    renderCanvas();
 }
 function changeFont(font) {
     gFont = font;
+    renderCanvas();
 }
 function toggleUnderline() {
 
 }
 function changeFillColor(color) {
     gFillColor = color;
+    renderCanvas();
 }
 function changeStrokeColor(color) {
     gStrokeColor = color;
+    renderCanvas();
 }
 
 function canvasClicked(ev) {
@@ -143,6 +188,10 @@ function doUploadImg(elForm, onSuccess) {
         .catch(function (err) {
             console.error(err)
         })
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }
 
 // function saveToStorage(key, val) {

@@ -11,19 +11,29 @@
 </head>
 
 <body onload="init()">
-    <header class="main-header flex space-between align-center">
-        <div class="logo">Memes</div>
-        <ul class=" main-nav clean-list flex space-between">
-            <li onclick="toggleView(1)">Gallery</li>
-            <li onclick="toggleView(0)">Edit</li>
-            <li>My Memes</li>
-            <li>About</li>
-        </ul>
+    <header class="main-header">
+
+        <div class="main-screen" onclick="toggleMenu()"></div>
+        <div class="main-content flex space-between align-center">
+            <div style="color: black;" class="logo">MEMES GENERATOR</div>
+            <ul class=" main-nav clean-list flex">
+                <li onclick="toggleView(1)">Gallery</li>
+                <li onclick="toggleView(0)">Edit</li>
+                <li>My Memes</li>
+                <li>About</li>
+            </ul>
+            <button class="toggle-btn" onclick="toggleMenu()">☰</button>
+        </div>
     </header>
     <main class="gallery main-content ">
         <div class="main-content-header flex align-center space-between">
             <input type="text" placeholder="search">
-            <div class="tags">TAGS TAGS TAGS</div>
+            <div class="tags">
+                <span data-font="16" onclick="fontPlus(this)">DOGS</span>
+                <span data-font="16" onclick="fontPlus(this)">CATS</span>
+                <span data-font="16" onclick="fontPlus(this)">BABIES</span>
+                <span data-font="16" onclick="fontPlus(this)">POLITICS</span>
+            </div>
             <button>More</button>
         </div>
         <!-- gallery section -->
@@ -59,11 +69,11 @@
                 <input placeholder="text" type="text" class="input" id="txt" oninput="drawText(this.value)">
                 <div>
                     <button style="background-color: red; width: 50px;" onclick="switchLine()"
-                    class="switch-line fa fa-arrows-v"></button>
+                        class="switch-line fa fa-arrows-v"></button>
                     <button style="background-color: green;width: 50px;" onclick="addLine()"
-                    class="add-line fa fa-plus"></button>
+                        class="add-line fa fa-plus"></button>
                     <button style="background-color: blue;width: 50px;" onclick="deleteLine()"
-                    class="delete-line fa fa-trash"></button>
+                        class="delete-line fa fa-trash"></button>
                 </div>
             </div>
             <div class="text-actions grid">
@@ -87,7 +97,7 @@
                     <input name="img" id="imgData" type="hidden" />
                     <button class="share fa fa-share-alt" type="submit"></button>
                 </form>
-                <a href=""  onclick="downloadCanvas(this)">
+                <a href="" onclick="downloadCanvas(this)">
                     <button class="fa fa-download"></button>
                 </a>
             </div>
