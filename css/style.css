@@ -215,13 +215,13 @@ img:hover {
 }
 
 @media (max-width:780px) {
-    header {
+    .main-header {
         height: 50px;
     }
 
     .edit {
         margin-top: 0;
-        height: 600px;
+        height: 520px;
         flex-direction: column;
         align-items: center;
     }
@@ -229,6 +229,11 @@ img:hover {
     #my-canvas {
         width: 250px;
         margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .action-center.flex{
+        padding: 15px;
     }
 
     .main-nav {
@@ -291,10 +296,8 @@ img:hover {
         flex-direction: column;
     }
 
-    .gallery .main-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .gallery.main-content {
+        width: 100vw;
     }
 
     .main-content-header>* {
@@ -302,12 +305,14 @@ img:hover {
     }
 
     img {
-        width: 130px;
+        width: 100px;
         /* max-width: 140px; */
     }
 
     .imgs.grid {
-        align-items: center;
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        /* align-items: center;
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); */
+        grid-template-columns: repeat(2,110px);
+        grid-auto-rows: 100px;
     }
 }

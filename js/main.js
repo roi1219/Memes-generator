@@ -98,8 +98,6 @@ function deleteLine() {
 }
 function fontPlus(span) {
     if (span) {
-        // console.log(span.style);
-        // span.style.fontSize = span.style.fontSize + 1 +'px';
         span.dataset.font = parseInt(span.dataset.font) + 1;
         span.style.fontSize = span.dataset.font+ "px";
         return;
@@ -148,6 +146,7 @@ function resizeCanvas(img) {
 }
 
 function toggleView(value) {
+    if(document.body.classList.contains('menu-open'))toggleMenu();
     if (document.querySelector('main.gallery').classList.contains('hidden') && !value) return;
     if (document.querySelector('main.edit').classList.contains('hidden') && value) return;
     document.querySelector('main.gallery').classList.toggle('hidden');
