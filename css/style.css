@@ -19,20 +19,42 @@ button {
     border: none;
     border-radius: 10px;
     outline: none;
+    transition: opacity .3s;
+    min-height: 30px;
+    min-width: 70px;
+}
+select{
+    transition: opacity .3s;
+}
+input{
+    transition: opacity .3s;
 }
 
 button:hover {
     opacity: .5;
 }
+select:hover {
+    opacity: .5;
+}
+input:hover {
+    opacity: .5;
+}
 
 /* components */
+
 .main-header {
     font-family: poppins;
     color: white;
     height: 75px;
     width: 100vw;
     border-radius: 25px;
-    background-image: linear-gradient(to right, rgb(25, 209, 191), rgb(68, 236, 68));
+    /* background-image: linear-gradient(to right, rgb(25, 209, 191), rgb(68, 236, 68)); */
+    background-color: white;
+}
+
+.logo{
+    text-shadow: -9px 4px 6px #000000;
+    font-size: 25px;
 }
 
 .main-header .main-content {
@@ -40,13 +62,20 @@ button:hover {
     justify-content: space-around;
 }
 
-ul{
+ul {
     justify-content: space-between;
 }
 
 ul>* {
     margin-right: 50px;
     cursor: pointer;
+    color: rgb(107, 107, 107);
+    text-shadow: -9px 4px 6px #000000;
+    transition: opacity .3s;
+}
+
+ul>*:hover {
+    opacity: .5;
 }
 
 .toggle-btn {
@@ -62,10 +91,7 @@ ul>* {
     background-color: #383b42;
     padding: 45px;
     border-radius: 90px;
-}
-
-.main-content-header {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .main-content-header>* {
@@ -76,16 +102,23 @@ ul>* {
     margin: 5px;
     cursor: pointer;
     font-weight: bold;
+    transition: opacity .3s;
+}
+.tags span:hover {
+    opacity: .5;
 }
 
 img {
     width: 150px;
     border-radius: 25px;
     cursor: pointer;
+    transition: opacity .3s;
+    transition: border .6s;
 }
 
 img:hover {
-    opacity: .5;
+    opacity: .7;
+    border:1px solid white
 }
 
 .imgs.grid {
@@ -130,16 +163,21 @@ img:hover {
     height: 50px;
     justify-content: space-between;
 }
+.action-center-header>* {
+    margin:5px
+}
 
 .text-actions.grid {
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(2, 40px);
     gap: 5px;
+    grid-auto-flow: dense;
 }
 
 .text-actions.grid>* {
     height: 100%;
-    width: 100%;
+    width: 50px;
+    min-width: unset;
     background-color: white;
     border: none;
     border-radius: 10px;
@@ -147,6 +185,7 @@ img:hover {
 
 .text-actions.grid select {
     grid-column: 1/3;
+    width: 105px;
 }
 
 .action-center-footer {
@@ -156,6 +195,19 @@ img:hover {
 .action-center-footer button {
     width: 50px;
     margin: 5px;
+}
+
+/* MY MEMES */
+.my-memes {}
+
+.meme-container {
+    background-color: #383b42;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    align-items: flex-start;
+    border-radius: 30px;
+    padding: 15px;
 }
 
 /* helpers */
@@ -226,24 +278,25 @@ img:hover {
         align-items: center;
     }
 
-    .canvas-container{
+    .canvas-container {
         text-align: center;
     }
 
     #my-canvas {
-        width: 300px;
+        width: 70vw;
         margin-right: 0;
         margin-bottom: 20px;
     }
 
-    .action-center.flex{
+    .action-center.flex {
         padding: 15px;
-        flex:1;
+        flex: 1;
     }
-    .actio1n-center.flex:first-child{
+
+    .actio1n-center.flex:first-child {
         margin-bottom: 10px;
     }
-    
+
     .main-nav {
         position: fixed;
         right: 0;
@@ -284,11 +337,17 @@ img:hover {
         justify-content: flex-start;
         align-items: center;
     }
-    ul li:first-child{
+
+    ul li:first-child {
         margin-top: 10px;
     }
-    ul>*{
+
+    ul>* {
         margin-right: 0;
+    }
+    .text-actions.grid>* {
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -320,7 +379,22 @@ img:hover {
     .imgs.grid {
         /* align-items: center;
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); */
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: auto;
+    }
+}
+
+/* MY MEMES RESPONSIVE */
+@media (max-width:980px) {}
+
+@media (max-width:780px) {
+    .meme-container {
+        /* flex-direction: column; */
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    .meme-container img {
+        width: 150px;
     }
 }

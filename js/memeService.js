@@ -40,4 +40,6 @@ var gImgs=[
     {id:17,keyWords:['funny']},
 ]
 
-var gMemes=[];
+// var gMemes=[];
+
+var gMyMemes=[];
