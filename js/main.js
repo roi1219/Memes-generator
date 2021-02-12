@@ -97,7 +97,8 @@ function addLine() {
     };
 }
 function deleteLine() {
-
+    gMeme.lines.splice(gMeme.selectedLineIdx,1);
+    renderCanvas();
 }
 function fontPlus() {
     gFontSize += 10;
