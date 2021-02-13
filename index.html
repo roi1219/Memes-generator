@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Memes generator</title>
 </head>
+
 <body onload="init()">
     <header class="main-header">
         <div class="main-screen" onclick="toggleMenu()"></div>
@@ -18,15 +19,16 @@
                 <li onclick="toggleView(0)">Gallery</li>
                 <li onclick="toggleView(1)">Edit</li>
                 <li onclick="toggleView(2)">My Memes</li>
-                <li>About</li>
+                <!-- <li>About</li> -->
             </ul>
             <button class="toggle-btn" onclick="toggleMenu()">☰</button>
         </div>
     </header>
+    <!-- gallery section -->
     <main class="gallery main-content ">
         <h2>GALLERY</h2>
-        <div class="main-content-header flex align-center space-between">
-            <input type="text" placeholder="search">
+        <div class="main-content-header flex align-center">
+            <!-- <input type="text" placeholder="search"> -->
             <div class="tags">
                 <span data-font="16" onclick="showTag(this)">ALL</span>
                 <span data-font="16" onclick="showTag(this)">DOGS</span>
@@ -34,9 +36,9 @@
                 <span data-font="16" onclick="showTag(this)">BABIES</span>
                 <span data-font="16" onclick="showTag(this)">POLITICS</span>
             </div>
-            <button>More</button>
+            <!-- <button>More</button> -->
         </div>
-        <!-- gallery section -->
+        <input style="margin: 10px; color: transparent;" type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
         <div class="imgs grid">
             <img onclick="createMeme(this)" id="0" src="imgs-square/1.jpg" alt="">
             <img onclick="createMeme(this)" id="1" src="imgs-square/2.jpg" alt="">
@@ -69,11 +71,11 @@
                 <input placeholder="text" type="text" class="input" id="txt" oninput="drawText(this.value)">
                 <div>
                     <button style="background-color: red; width: 50px;" onclick="switchLine()"
-                    class="switch-line fa fa-arrows-v"></button>
+                        class="switch-line fa fa-arrows-v"></button>
                     <button style="background-color: green;width: 50px;" onclick="addLine()"
-                    class="add-line fa fa-plus"></button>
+                        class="add-line fa fa-plus"></button>
                     <button style="background-color: blue;width: 50px;" onclick="deleteLine()"
-                    class="delete-line fa fa-trash"></button>
+                        class="delete-line fa fa-trash"></button>
                 </div>
             </div>
             <div class="text-actions grid">
@@ -100,6 +102,7 @@
                 <a href="" onclick="downloadCanvas(this)">
                     <button class="fa fa-download"></button>
                 </a>
+                <button onclick="saveCanvas()" class="fa fa-save"></button>
             </div>
         </div>
     </main>
@@ -108,8 +111,9 @@
         <div class="meme-container flex">
         </div>
     </main>
-    
+
     <script src="js/memeService.js"></script>
+    <script src="js/uploadService.js"></script>
     <script src="js/DragAndDropService.js"></script>
     <script src="js/main.js"></script>
 </body>

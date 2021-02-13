@@ -79,7 +79,7 @@ function renderCanvas() {
 }
 
 function drawText(text) {
-    if(gMeme.lines[gMeme.selectedLineIdx]){
+    if (gMeme.lines[gMeme.selectedLineIdx]) {
         gMeme.lines[gMeme.selectedLineIdx] = {
             txt: text,
             fontSize: gCtx.font,
@@ -87,10 +87,10 @@ function drawText(text) {
             fillColor: gCtx.fillStyle,
             strokeColor: gCtx.strokeStyle,
             pos: { x: gMeme.lines[gMeme.selectedLineIdx].pos.x, y: gMeme.lines[gMeme.selectedLineIdx].pos.y },
-            isDragging:false
+            isDragging: false
         };
     }
-    else{
+    else {
         gMeme.lines[gMeme.selectedLineIdx] = {
             txt: text,
             fontSize: gCtx.font,
@@ -98,7 +98,7 @@ function drawText(text) {
             fillColor: gCtx.fillStyle,
             strokeColor: gCtx.strokeStyle,
             pos: { x: gPos.x, y: gPos.y },
-            isDragging:false
+            isDragging: false
         };
 
     }
@@ -197,8 +197,20 @@ function canvasClicked(ev) {
 }
 
 function resizeCanvas(img) {
-    gElCanvas.width = img.naturalHeight;
-    gElCanvas.height = img.naturalWidth;
+    console.log('img:', img.naturalWidth)
+    console.log('img:', img.naturalHeight)
+    if(img.naturalHeight<img.naturalWidth){
+        console.log('bi');
+        gElCanvas.height=200;
+        gElCanvas.width=400;
+    }
+    else{
+        console.log('hi');
+        gElCanvas.height=500;
+        gElCanvas.width=400;
+    }
+    // gElCanvas.height = (img.naturalHeight > 500) ? 500 : img.naturalHeight;
+    // gElCanvas.width = (img.naturalWidth > 400) ? 400 : img.naturalWidth;
 }
 
 function toggleView(value) {
@@ -227,9 +239,12 @@ function clearCanvas() {
 
 function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL();
-    // console.log(data);
     elLink.href = data;
     elLink.download = 'canvas';
+}
+
+function saveCanvas() {
+    const data = gElCanvas.toDataURL();
     var imgHTML = `<img src="${data}" alt="">`;
     gMyMemes.push(imgHTML);
     saveToStorage('memes', gMyMemes);
@@ -273,3 +288,23 @@ function loadFromStorage(key) {
     var val = localStorage.getItem(key);
     return JSON.parse(val);
 }
+function onImgInput(ev) {
+    loadImageFromInput(ev, createMeme)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    // document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader()
+
+    reader.onload = function (event) {
+        var img = new Image()
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result
+        // gImg = img
+    }
+    reader.readAsDataURL(ev.target.files[0])
+}
+
+// function renderImg(img) {
+//     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+// }

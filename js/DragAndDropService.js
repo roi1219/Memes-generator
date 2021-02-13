@@ -20,7 +20,7 @@ function addTouchListeners() {
 }
 
 function onDown(ev) {
-    document.body.style.cursor = 'grab'
+    document.body.style.cursor = 'grabbing'
     const pos = getEvPos(ev)
     var textPos=isTextClicked(pos);
     if (!textPos) return
@@ -49,7 +49,7 @@ function onMove(ev) {
 
 function onUp() {
     gMeme.lines[gClickedLineIdx].isDragging = false;
-    document.body.style.cursor = 'grabbing';
+    document.body.style.cursor = 'grab';
 }
 
 function getEvPos(ev) {

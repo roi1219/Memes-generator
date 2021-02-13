@@ -58,7 +58,7 @@ input:hover {
     font-family: poppins;
     color: white;
     height: 75px;
-    width: 100vw;
+    width: 100%;
     border-radius: 25px;
     background-color: white;
 }
@@ -105,6 +105,9 @@ ul>*:hover {
     margin-top: 20px;
 }
 
+.main-content-header{
+    justify-content: center;
+}
 .main-content-header>* {
     padding: 10px;
 }
@@ -192,7 +195,6 @@ img:hover {
     height: 100%;
     width: 50px;
     min-width: unset;
-    background-color: white;
     border: none;
     border-radius: 10px;
 }
@@ -205,6 +207,15 @@ img:hover {
 .action-center-footer {
     justify-content: center;
 }
+.fa-save{
+    background-color: greenyellow;
+}
+.action-center-footer form button{
+    background-color: #1E7CD3;
+}
+.action-center-footer  button:first-child {
+    background-color: #8F44BB;
+}
 
 .action-center-footer button {
     width: 50px;
@@ -215,6 +226,7 @@ img:hover {
 .my-memes {}
 
 .meme-container {
+    flex-wrap: wrap;
     background-color: #383b42;
     justify-content: center;
     gap: 15px;
