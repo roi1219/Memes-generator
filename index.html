@@ -24,6 +24,7 @@
         </div>
     </header>
     <main class="gallery main-content ">
+        <h2>GALLERY</h2>
         <div class="main-content-header flex align-center space-between">
             <input type="text" placeholder="search">
             <div class="tags">
@@ -68,11 +69,11 @@
                 <input placeholder="text" type="text" class="input" id="txt" oninput="drawText(this.value)">
                 <div>
                     <button style="background-color: red; width: 50px;" onclick="switchLine()"
-                        class="switch-line fa fa-arrows-v"></button>
+                    class="switch-line fa fa-arrows-v"></button>
                     <button style="background-color: green;width: 50px;" onclick="addLine()"
-                        class="add-line fa fa-plus"></button>
+                    class="add-line fa fa-plus"></button>
                     <button style="background-color: blue;width: 50px;" onclick="deleteLine()"
-                        class="delete-line fa fa-trash"></button>
+                    class="delete-line fa fa-trash"></button>
                 </div>
             </div>
             <div class="text-actions grid">
@@ -103,11 +104,13 @@
         </div>
     </main>
     <main class="my-memes">
+        <h2>YOUR MEMES</h2>
         <div class="meme-container flex">
         </div>
     </main>
-
+    
     <script src="js/memeService.js"></script>
+    <script src="js/DragAndDropService.js"></script>
     <script src="js/main.js"></script>
 </body>
 

@@ -15,7 +15,7 @@ var gPos = {
 var gMeme = {
     selectedImgId: '',
     selectedLineIdx: 0,
-    lines: []
+    lines: [],
 };
 
 function init() {
@@ -25,6 +25,7 @@ function init() {
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d');
     renderMyMemes();
+    addListeners();
 }
 
 function renderMyMemes() {
@@ -33,7 +34,6 @@ function renderMyMemes() {
         var imgsHTML = gMyMemes.map(url => {
             return `${url}`
         }).join('');
-        console.log(imgsHTML);
         document.querySelector('.meme-container').innerHTML = imgsHTML;
     }
 
@@ -79,14 +79,29 @@ function renderCanvas() {
 }
 
 function drawText(text) {
-    gMeme.lines[gMeme.selectedLineIdx] = {
-        txt: text,
-        fontSize: gCtx.font,
-        align: gCtx.textAlign,
-        fillColor: gCtx.fillStyle,
-        strokeColor: gCtx.strokeStyle,
-        pos: { x: gPos.x, y: gPos.y }
-    };
+    if(gMeme.lines[gMeme.selectedLineIdx]){
+        gMeme.lines[gMeme.selectedLineIdx] = {
+            txt: text,
+            fontSize: gCtx.font,
+            align: gCtx.textAlign,
+            fillColor: gCtx.fillStyle,
+            strokeColor: gCtx.strokeStyle,
+            pos: { x: gMeme.lines[gMeme.selectedLineIdx].pos.x, y: gMeme.lines[gMeme.selectedLineIdx].pos.y },
+            isDragging:false
+        };
+    }
+    else{
+        gMeme.lines[gMeme.selectedLineIdx] = {
+            txt: text,
+            fontSize: gCtx.font,
+            align: gCtx.textAlign,
+            fillColor: gCtx.fillStyle,
+            strokeColor: gCtx.strokeStyle,
+            pos: { x: gPos.x, y: gPos.y },
+            isDragging:false
+        };
+
+    }
     renderCanvas();
 }
 

@@ -14,6 +14,14 @@ body {
     background-color: #22252c;
 }
 
+h2 {
+    color:white;
+    font-family: poppins;
+    text-align: center;
+    text-shadow: -9px 4px 6px #000000;
+
+}
+
 button {
     cursor: pointer;
     border: none;
@@ -23,19 +31,23 @@ button {
     min-height: 30px;
     min-width: 70px;
 }
-select{
+
+select {
     transition: opacity .3s;
 }
-input{
+
+input {
     transition: opacity .3s;
 }
 
 button:hover {
     opacity: .5;
 }
+
 select:hover {
     opacity: .5;
 }
+
 input:hover {
     opacity: .5;
 }
@@ -48,11 +60,10 @@ input:hover {
     height: 75px;
     width: 100vw;
     border-radius: 25px;
-    /* background-image: linear-gradient(to right, rgb(25, 209, 191), rgb(68, 236, 68)); */
     background-color: white;
 }
 
-.logo{
+.logo {
     text-shadow: -9px 4px 6px #000000;
     font-size: 25px;
 }
@@ -104,6 +115,7 @@ ul>*:hover {
     font-weight: bold;
     transition: opacity .3s;
 }
+
 .tags span:hover {
     opacity: .5;
 }
@@ -118,7 +130,7 @@ img {
 
 img:hover {
     opacity: .7;
-    border:1px solid white
+    border: 1px solid white
 }
 
 .imgs.grid {
@@ -139,7 +151,8 @@ img:hover {
     margin: auto, auto;
     margin-left: auto;
     margin-right: auto;
-
+    background-color: #383b4269;
+    border-radius: 25px;
 }
 
 #my-canvas {
@@ -163,8 +176,9 @@ img:hover {
     height: 50px;
     justify-content: space-between;
 }
+
 .action-center-header>* {
-    margin:5px
+    margin: 5px
 }
 
 .text-actions.grid {
@@ -345,6 +359,7 @@ img:hover {
     ul>* {
         margin-right: 0;
     }
+
     .text-actions.grid>* {
         width: 40px;
         height: 40px;
