@@ -39,7 +39,3 @@ var gImgs=[
     {id:16,keyWords:['politics']},
     {id:17,keyWords:['funny']},
 ]
-
-// var gMemes=[];
-
-var gMyMemes=[];

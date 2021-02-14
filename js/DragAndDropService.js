@@ -51,13 +51,6 @@ function onMove(ev) {
             gMeme.lines[gClickedLineIdx].pos.y-gFontSize,
             gCtx.measureText(txt).width+10,
             gFontSize+5);
-
-            // gMeme.lines[gClickedLineIdx].pos.x-gCtx.measureText(txt).width / 2,
-            // gMeme.lines[gClickedLineIdx].pos.y-gFontSize,
-            // gMeme.lines[gClickedLineIdx].pos.x+gCtx.measureText(txt).width / 2,
-            // gMeme.lines[gClickedLineIdx].pos.y);
-
-            // drawRect(gPos.x - gCtx.measureText(txt).width / 2, gPos.y - gFontSize,gCtx.measureText(txt).width,gFontSize);
         }
     }
 }
