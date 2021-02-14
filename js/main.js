@@ -102,27 +102,69 @@ function drawText(text) {
         };
 
     }
+    console.log(gCtx.measureText(text).width);
     renderCanvas();
+    // drawRect(gPos.x - gCtx.measureText(text).width / 2, gPos.y - gFontSize,gPos.x+gCtx.measureText(text).width/2,gPos.y);
+    drawRect(gPos.x-5 - gCtx.measureText(text).width / 2, gPos.y - gFontSize, gCtx.measureText(text).width+10, gFontSize+10);
 }
 
 function switchLine() {
     if (gMeme.lines.length === 2) {
         if (gMeme.selectedLineIdx === 0) {
             gMeme.selectedLineIdx = 1;
-            document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
+            var txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+            document.getElementById('txt').value = txt;
             gPos = { x: 250, y: 400 };
+            renderCanvas();
+            // drawRect(gPos.x - gCtx.measureText(txt).width / 2 - 5, gPos.y - gFontSize, gCtx.measureText(txt).width + 10, gFontSize + 5);
+            drawRect(
+                gMeme.lines[gMeme.selectedLineIdx].pos.x-gCtx.measureText(txt).width / 2-5,
+                gMeme.lines[gMeme.selectedLineIdx].pos.y-gFontSize,
+                gCtx.measureText(txt).width+10,
+                gFontSize+5);
+            // gCtx.beginPath();
+            // gCtx.rect
+            // renderCanvas();
+            // setTimeout(function(){
+
+            // },3000);
         }
         else {
             gMeme.selectedLineIdx = 0;
-            document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
+            var txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+            document.getElementById('txt').value = txt
             gPos = { x: 250, y: 100 };
+            renderCanvas();
+            // drawRect(gPos.x - gCtx.measureText(txt).width / 2 - 5, gPos.y - gFontSize, gCtx.measureText(txt).width + 10, gFontSize + 5);
+            drawRect(
+                gMeme.lines[gMeme.selectedLineIdx].pos.x-gCtx.measureText(txt).width / 2-5,
+                gMeme.lines[gMeme.selectedLineIdx].pos.y-gFontSize,
+                gCtx.measureText(txt).width+10,
+                gFontSize+5);
         }
     }
     else {
         gMeme.selectedLineIdx = 0;
-        document.getElementById('txt').value = gMeme.lines[gMeme.selectedLineIdx].txt;
+        var txt = gMeme.lines[gMeme.selectedLineIdx].txt;
+        document.getElementById('txt').value = txt;
         gPos = { x: 250, y: 100 };
+        renderCanvas();
+        // drawRect(gPos.x - gCtx.measureText(txt).width / 2 - 5, gPos.y - gFontSize, gCtx.measureText(txt).width + 10, gFontSize + 5);
+        drawRect(
+            gMeme.lines[gMeme.selectedLineIdx].pos.x-gCtx.measureText(txt).width / 2-5,
+            gMeme.lines[gMeme.selectedLineIdx].pos.y-gFontSize,
+            gCtx.measureText(txt).width+10,
+            gFontSize+5);
     }
+}
+function drawRect(xStart, yStart, xEnd, yEnd) {
+    gCtx.beginPath()
+    gCtx.rect(xStart, yStart, xEnd, yEnd)
+    // gCtx.fillStyle = 'orange'
+    // gCtx.fill()
+    // gCtx.fillRect(x, y, xEnd, yEnd)
+    gCtx.strokeStyle = 'black'
+    gCtx.stroke()
 }
 function addLine() {
     if (gMeme.lines.length === 2) return;
@@ -132,6 +174,7 @@ function addLine() {
         x: 250,
         y: 400
     };
+    drawRect(gPos.x, gPos.y, 100, 50);
 }
 function deleteLine() {
     document.getElementById('txt').value = '';
@@ -199,15 +242,15 @@ function canvasClicked(ev) {
 function resizeCanvas(img) {
     console.log('img:', img.naturalWidth)
     console.log('img:', img.naturalHeight)
-    if(img.naturalHeight<img.naturalWidth){
+    if (img.naturalHeight < img.naturalWidth) {
         console.log('bi');
-        gElCanvas.height=200;
-        gElCanvas.width=400;
+        gElCanvas.height = 200;
+        gElCanvas.width = 400;
     }
-    else{
+    else {
         console.log('hi');
-        gElCanvas.height=500;
-        gElCanvas.width=400;
+        gElCanvas.height = 500;
+        gElCanvas.width = 400;
     }
     // gElCanvas.height = (img.naturalHeight > 500) ? 500 : img.naturalHeight;
     // gElCanvas.width = (img.naturalWidth > 400) ? 400 : img.naturalWidth;
@@ -280,14 +323,6 @@ function toggleMenu() {
     document.body.classList.toggle('menu-open');
 }
 
-function saveToStorage(key, val) {
-    localStorage.setItem(key, JSON.stringify(val));
-}
-
-function loadFromStorage(key) {
-    var val = localStorage.getItem(key);
-    return JSON.parse(val);
-}
 function onImgInput(ev) {
     loadImageFromInput(ev, createMeme)
 }

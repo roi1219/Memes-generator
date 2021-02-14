@@ -207,15 +207,6 @@ img:hover {
 .action-center-footer {
     justify-content: center;
 }
-.fa-save{
-    background-color: greenyellow;
-}
-.action-center-footer form button{
-    background-color: #1E7CD3;
-}
-.action-center-footer  button:first-child {
-    background-color: #8F44BB;
-}
 
 .action-center-footer button {
     width: 50px;
@@ -309,7 +300,8 @@ img:hover {
     }
 
     #my-canvas {
-        width: 70vw;
+        width: 40vw;
+        height: 40vh;
         margin-right: 0;
         margin-bottom: 20px;
     }

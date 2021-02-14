@@ -1,5 +1,5 @@
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
-var gStartPos;
+var gPos;
 var gClickedLineIdx;
 
 function addListeners() {
@@ -22,27 +22,42 @@ function addTouchListeners() {
 function onDown(ev) {
     document.body.style.cursor = 'grabbing'
     const pos = getEvPos(ev)
-    var textPos=isTextClicked(pos);
+    var textPos = isTextClicked(pos);
     if (!textPos) return
-    gClickedLineIdx=gMeme.lines.findIndex(line=>{
-        if(line.pos.x===textPos.x&&line.pos.y===textPos.y) return line;
+    gClickedLineIdx = gMeme.lines.findIndex(line => {
+        if (line.pos.x === textPos.x && line.pos.y === textPos.y) return line;
     })
-    gMeme.lines[gClickedLineIdx].isDragging=true;
-    gStartPos = pos
+    gMeme.lines[gClickedLineIdx].isDragging = true;
+    gPos = pos
 }
 
 function onMove(ev) {
-    if(gMeme.lines[gClickedLineIdx]){
+    if (gMeme.lines[gClickedLineIdx]) {
+        document.getElementById('txt').value = gMeme.lines[gClickedLineIdx].txt;
         if (gMeme.lines[gClickedLineIdx].isDragging) {
             const pos = getEvPos(ev);
-            const dx = pos.x - gStartPos.x;
-            const dy = pos.y - gStartPos.y;
-            
+            console.log('pos:', pos)
+            const dx = pos.x - gPos.x;
+            const dy = pos.y - gPos.y;
+
             gMeme.lines[gClickedLineIdx].pos.x += dx;
             gMeme.lines[gClickedLineIdx].pos.y += dy;
-            
-            gStartPos = pos;
+
+            gPos = pos;
             renderCanvas();
+            var txt = gMeme.lines[gClickedLineIdx].txt;
+            drawRect(
+            gMeme.lines[gClickedLineIdx].pos.x-gCtx.measureText(txt).width / 2-5,
+            gMeme.lines[gClickedLineIdx].pos.y-gFontSize,
+            gCtx.measureText(txt).width+10,
+            gFontSize+5);
+
+            // gMeme.lines[gClickedLineIdx].pos.x-gCtx.measureText(txt).width / 2,
+            // gMeme.lines[gClickedLineIdx].pos.y-gFontSize,
+            // gMeme.lines[gClickedLineIdx].pos.x+gCtx.measureText(txt).width / 2,
+            // gMeme.lines[gClickedLineIdx].pos.y);
+
+            // drawRect(gPos.x - gCtx.measureText(txt).width / 2, gPos.y - gFontSize,gCtx.measureText(txt).width,gFontSize);
         }
     }
 }

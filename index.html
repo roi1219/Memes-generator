@@ -28,7 +28,7 @@
     <main class="gallery main-content ">
         <h2>GALLERY</h2>
         <div class="main-content-header flex align-center">
-            <!-- <input type="text" placeholder="search"> -->
+            <!-- <input type="text" placeholder="search" class="fa fa-search"> -->
             <div class="tags">
                 <span data-font="16" onclick="showTag(this)">ALL</span>
                 <span data-font="16" onclick="showTag(this)">DOGS</span>
@@ -70,11 +70,11 @@
             <div class=" action-center-header flex direction-col align-center">
                 <input placeholder="text" type="text" class="input" id="txt" oninput="drawText(this.value)">
                 <div>
-                    <button style="background-color: red; width: 50px;" onclick="switchLine()"
+                    <button style="width: 50px;" onclick="switchLine()"
                         class="switch-line fa fa-arrows-v"></button>
-                    <button style="background-color: green;width: 50px;" onclick="addLine()"
+                    <button style="width: 50px;" onclick="addLine()"
                         class="add-line fa fa-plus"></button>
-                    <button style="background-color: blue;width: 50px;" onclick="deleteLine()"
+                    <button style="width: 50px;" onclick="deleteLine()"
                         class="delete-line fa fa-trash"></button>
                 </div>
             </div>
@@ -112,6 +112,7 @@
         </div>
     </main>
 
+    <script src="js/storageService.js"></script>
     <script src="js/memeService.js"></script>
     <script src="js/uploadService.js"></script>
     <script src="js/DragAndDropService.js"></script>
